@@ -41,7 +41,7 @@ void runCodeWithSoftwarePolling(){
                                             // to activate previously configured port settings
 
     while(1){
-        if(P2IN & BIT3)
+        if(P2IN & BIT3)       //TAKING ALL POWER TO SEE THIS (IT'S WASTED) (USE INTERUPT TO TURN CPU OFF)
             P6OUT |= BIT6;
         else
             P6OUT &= ~BIT6;

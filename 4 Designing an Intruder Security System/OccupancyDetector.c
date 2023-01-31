@@ -1,10 +1,10 @@
 /*
  * OccupancyDetector.c
  *
- *  Created on: Jan 30, 2023
- *      Author: russty
+ *  Created on: Jan 31, 2023
+ *      Author: Craig Droke
  */
 
-
+//See READme file
 
 

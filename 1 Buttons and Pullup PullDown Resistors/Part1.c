@@ -1,8 +1,10 @@
 /*
+ * DONE
+ *
  *  Pull-Up Resistor Configuration
  *
- *  Created on: Jan 30, 2023
- *      Author: Russell Trafford
+ *  Created on: Jan 31, 2023
+ *      Author: Craig Droke
  *      Version: 1.0
  *
  *      This example will show you how to configure the Pull-up Resistor for your button inputs.
@@ -32,11 +34,11 @@ int main(void)
 
     while(1)
     {
-        if (P2IN & BIT3)            // If S2 (P2.3) is pressed
+        if (!(P2IN & BIT3))            // If S2 (P2.3) is pressed
             P6OUT ^= BIT6;          // Toggle P6.6
-        if (P4IN & BIT1)            // If S1 (P4.1) is pressed
+        if (!(P4IN & BIT1))            // If S1 (P4.1) is pressed
             P1OUT ^= BIT0;          // Toggle P1.0
-        __delay_cycles(100000);             // Delay for 100000*(1/MCLK)=0.1s
+        __delay_cycles(100000);             // Delay for 100000*(1/MCLK)=0.1s   ***THIS IS INOFFICIENT, USE INTERUPTS
     }
 
 
@@ -47,7 +49,7 @@ void gpioInit()
 {
    // Setting Directions of Pins
 
-       P1DIR |= BIT0;              // Configure P1.0 to an Output
+       P1DIR |= BIT0;              // Configure P1.0 to an Output WORK HERE MAKE IT SO BUTTON PRESSING IS INVERTED
        P6DIR |= BIT6;              // Configure P6.6 to an Output
        P2DIR &= ~BIT3;             // Configure P2.3 to an Input
        P4DIR &= ~BIT1;             // Configure P4.1 to an Input
