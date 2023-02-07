@@ -39,7 +39,7 @@ int main(){
 
     // Instatiate count variables and flags
 
-        int count = 0;                            // Counts time paired with a 1 sec delay
+        int count = 1;                            // Counts time paired with a 1 sec delay
         int totalert = 0;                         // Flag to stop from being able to go into armed (green blink) state after 15 seconds
         int alert = 0;                            // Flag to differentiate > 10 seconds in warning (blink red)
 
@@ -56,7 +56,7 @@ int main(){
               P6OUT ^= BIT6;                      // Toggle P6.6
               __delay_cycles(500000);             // Delay for 100000*(1/MCLK)=.5s
               P6OUT &= ~BIT6;                     // Clear P6.6
-              count = 0;                          // Reset count
+              count = 1;                          // Reset count
               alert = 0;                          // Reset alert
               __delay_cycles(2500000);            // Delay for 2500000*(1/MCLK)=2.5s
           }
@@ -65,13 +65,13 @@ int main(){
     // This then blinks red every second (500ms on and off).
 
           if (!(P2IN & BIT3) && alert == 0){
+
               P6OUT &= ~BIT6;                     // Clears P6.6
               P1OUT ^= BIT0;                      // Toggle P1.0
               __delay_cycles(500000);             // Delay for 500000*(1/MCLK)=0.5s
               P1OUT &= ~BIT0;                     // Clears P1.0
               __delay_cycles(500000);             // Delay for 500000*(1/MCLK)=0.5s
               count++;                            // Increases count by 1 after the second passes
-
           }
 
     // This if statement checks if the count is greater than or equal to 10 seconds.
